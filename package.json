@@ -10,14 +10,16 @@
 		"version": "git add -A src",
 		"postversion": "git push && git push --tags",
 		"lint": "eslint src",
-		"test": "jest src/tests"
+		"test": "echo 'No tests found'"
 	},
 	"repository": {},
 	"author": "Eduardo Moreira",
 	"license": "ISC",
 	"bugs": {},
 	"homepage": "",
-	"dependencies": {},
+	"dependencies": {
+		"axios": "^0.24.0"
+	},
 	"devDependencies": {
 		"@babel/cli": "^7.15.7",
 		"@babel/core": "^7.15.5",
