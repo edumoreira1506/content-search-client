@@ -10,14 +10,19 @@
 		"version": "git add -A src",
 		"postversion": "git push && git push --tags",
 		"lint": "eslint src",
-		"test": "jest src/tests"
+		"test": "echo 'No tests found'"
 	},
 	"repository": {},
 	"author": "Eduardo Moreira",
 	"license": "ISC",
 	"bugs": {},
 	"homepage": "",
-	"dependencies": {},
+	"dependencies": {
+		"@babel/plugin-proposal-decorators": "^7.16.4",
+		"@cig-platform/decorators": "^0.0.1",
+		"@cig-platform/types": "^0.0.20",
+		"axios": "^0.24.0"
+	},
 	"devDependencies": {
 		"@babel/cli": "^7.15.7",
 		"@babel/core": "^7.15.5",
