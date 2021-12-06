@@ -19,6 +19,7 @@
 	"homepage": "",
 	"dependencies": {
 		"@cig-platform/decorators": "^0.0.1",
+		"@cig-platform/types": "^0.0.20",
 		"axios": "^0.24.0"
 	},
 	"devDependencies": {
