@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import { RequestErrorHandler } from '@cig-platform/decorators';
-import { IBreeder } from '@cig-platform/types';
+import { IBreeder, IPoultry } from '@cig-platform/types';
 
 interface RequestSuccess {
   ok: true;
@@ -8,6 +8,11 @@ interface RequestSuccess {
 
 export interface GetBreedersSuccess extends RequestSuccess {
   breeders: IBreeder[];
+}
+
+export interface GetBreederSuccess extends RequestSuccess {
+  breeder: IBreeder;
+  poultries: IPoultry[];
 }
 
 export default class ContentSearchClient {
@@ -30,6 +35,13 @@ export default class ContentSearchClient {
     const { data } = await this._axiosBackofficeBffInstance.get<GetBreedersSuccess>(
       `/v1/breeders?keyword=${keyword}`, 
     );
+
+    return data;
+  }
+
+  @RequestErrorHandler()
+  async getBreeder(breederId = '') {
+    const { data } = await this._axiosBackofficeBffInstance.get<GetBreederSuccess>(`/v1/breeders/${breederId}`);
 
     return data;
   }
