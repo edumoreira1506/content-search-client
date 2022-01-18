@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import { RequestErrorHandler } from '@cig-platform/decorators';
-import { IBreeder, IPoultry } from '@cig-platform/types';
+import { IBreeder, IBreederContact, IPoultry } from '@cig-platform/types';
 
 interface RequestSuccess {
   ok: true;
@@ -11,7 +11,7 @@ export interface GetBreedersSuccess extends RequestSuccess {
 }
 
 export interface GetBreederSuccess extends RequestSuccess {
-  breeder: IBreeder;
+  breeder: IBreeder & { contacts: IBreederContact[] };
   poultries: IPoultry[];
 }
 
