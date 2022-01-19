@@ -1,6 +1,13 @@
 import axios, { AxiosInstance } from 'axios';
 import { RequestErrorHandler } from '@cig-platform/decorators';
-import { IBreeder, IBreederContact, IPoultry } from '@cig-platform/types';
+import {
+  IAdvertising,
+  IBreeder,
+  IBreederContact,
+  IPoultry,
+  IPoultryImage,
+  IPoultryRegister,
+} from '@cig-platform/types';
 
 interface RequestSuccess {
   ok: true;
@@ -13,6 +20,14 @@ export interface GetBreedersSuccess extends RequestSuccess {
 export interface GetBreederSuccess extends RequestSuccess {
   breeder: IBreeder & { contacts: IBreederContact[] };
   poultries: IPoultry[];
+}
+
+export interface GetPoultrySuccess extends RequestSuccess {
+  poultries: IPoultry & { images: IPoultryImage[] }[];
+  registers: IPoultryRegister[];
+  advertisings: IAdvertising[];
+  vaccines: IPoultryRegister[];
+  measurementAndWeigthing: IPoultryRegister[];
 }
 
 export default class ContentSearchClient {
@@ -42,6 +57,15 @@ export default class ContentSearchClient {
   @RequestErrorHandler()
   async getBreeder(breederId = '') {
     const { data } = await this._axiosBackofficeBffInstance.get<GetBreederSuccess>(`/v1/breeders/${breederId}`);
+
+    return data;
+  }
+
+  @RequestErrorHandler()
+  async getPoultry(breederId = '', poultryId = '') {
+    const { data } = await this._axiosBackofficeBffInstance.get<GetPoultrySuccess>(
+      `/v1/breeders/${breederId}/poultries/${poultryId}`
+    );
 
     return data;
   }
