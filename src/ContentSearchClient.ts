@@ -23,7 +23,7 @@ export interface GetBreederSuccess extends RequestSuccess {
 }
 
 export interface GetPoultrySuccess extends RequestSuccess {
-  poultry: IPoultry & { images: IPoultryImage[] }[];
+  poultry: IPoultry & { images: IPoultryImage[] };
   registers: IPoultryRegister[];
   advertisings: IAdvertising[];
   vaccines: IPoultryRegister[];
