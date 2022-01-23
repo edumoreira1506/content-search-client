@@ -22,6 +22,14 @@ export interface GetBreederSuccess extends RequestSuccess {
   poultries: IPoultry[];
 }
 
+export interface GetBreederPoultriesSuccess extends RequestSuccess {
+  forSale: IPoultry[];
+  reproductives: IPoultry[];
+  matrixes: IPoultry[];
+  males: IPoultry[];
+  females: IPoultry[];
+}
+
 export interface GetPoultrySuccess extends RequestSuccess {
   poultry: IPoultry & { images: IPoultryImage[]; code: string; };
   registers: IPoultryRegister[];
@@ -58,6 +66,15 @@ export default class ContentSearchClient {
   @RequestErrorHandler()
   async getBreeder(breederId = '') {
     const { data } = await this._axiosBackofficeBffInstance.get<GetBreederSuccess>(`/v1/breeders/${breederId}`);
+
+    return data;
+  }
+
+  @RequestErrorHandler()
+  async getBreederPoultries(breederId = '') {
+    const { data } = await this._axiosBackofficeBffInstance.get<GetBreederPoultriesSuccess>(
+      `/v1/breeders/${breederId}/poultries`
+    );
 
     return data;
   }
