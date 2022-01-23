@@ -28,6 +28,7 @@ export interface GetPoultrySuccess extends RequestSuccess {
   advertisings: IAdvertising[];
   vaccines: IPoultryRegister[];
   measurementAndWeigthing: IPoultryRegister[];
+  whatsAppContacts: IBreederContact[];
 }
 
 export default class ContentSearchClient {
