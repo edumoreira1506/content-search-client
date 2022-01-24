@@ -22,12 +22,17 @@ export interface GetBreederSuccess extends RequestSuccess {
   poultries: IPoultry[];
 }
 
+interface PoultryWithImages extends IPoultry {
+  images: IPoultryImage[];
+  mainImage: string;
+}
+
 export interface GetBreederPoultriesSuccess extends RequestSuccess {
-  forSale: IPoultry & { images: IPoultryImage[]; mainImage: string; }[];
-  reproductives: IPoultry & { images: IPoultryImage[]; mainImage: string; }[];
-  matrixes: IPoultry & { images: IPoultryImage[]; mainImage: string; }[];
-  males: IPoultry & { images: IPoultryImage[]; mainImage: string; }[];
-  females: IPoultry & { images: IPoultryImage[]; mainImage: string; }[];
+  forSale: PoultryWithImages[];
+  reproductives: PoultryWithImages[];
+  matrixes: PoultryWithImages[];
+  males: PoultryWithImages[];
+  females: PoultryWithImages[];
 }
 
 export interface GetPoultrySuccess extends RequestSuccess {
