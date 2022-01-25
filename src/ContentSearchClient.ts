@@ -2,6 +2,8 @@ import axios, { AxiosInstance } from 'axios';
 import { RequestErrorHandler } from '@cig-platform/decorators';
 import {
   IAdvertising,
+  IAdvertisingQuestion,
+  IAdvertisingQuestionAnswer,
   IBreeder,
   IBreederContact,
   IPoultry,
@@ -35,10 +37,18 @@ export interface GetBreederPoultriesSuccess extends RequestSuccess {
   females: PoultryWithImages[];
 }
 
+type Question = IAdvertisingQuestion & {
+  answers: IAdvertisingQuestionAnswer[];
+}
+
+type Advertising = IAdvertising & {
+  questions: Question[];
+}
+
 export interface GetPoultrySuccess extends RequestSuccess {
   poultry: IPoultry & { images: IPoultryImage[]; code: string; };
   registers: IPoultryRegister[];
-  advertisings: IAdvertising[];
+  advertisings: Advertising[];
   vaccines: IPoultryRegister[];
   measurementAndWeigthing: IPoultryRegister[];
   whatsAppContacts: IBreederContact[];
