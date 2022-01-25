@@ -9,6 +9,7 @@ import {
   IPoultry,
   IPoultryImage,
   IPoultryRegister,
+  IUser,
 } from '@cig-platform/types';
 
 interface RequestSuccess {
@@ -37,8 +38,13 @@ export interface GetBreederPoultriesSuccess extends RequestSuccess {
   females: PoultryWithImages[];
 }
 
+type AdvertisingQuestionAnswer = IAdvertisingQuestionAnswer & {
+  user: IUser;
+}
+
 type Question = IAdvertisingQuestion & {
-  answers: IAdvertisingQuestionAnswer[];
+  answers: AdvertisingQuestionAnswer[];
+  user: IUser;
 }
 
 type Advertising = IAdvertising & {
@@ -52,6 +58,7 @@ export interface GetPoultrySuccess extends RequestSuccess {
   vaccines: IPoultryRegister[];
   measurementAndWeigthing: IPoultryRegister[];
   whatsAppContacts: IBreederContact[];
+  breeder: IBreeder;
 }
 
 export default class ContentSearchClient {
