@@ -36,6 +36,13 @@ export interface GetBreederPoultriesSuccess extends RequestSuccess {
   matrixes: PoultryWithImages[];
   males: PoultryWithImages[];
   females: PoultryWithImages[];
+  pagination: {
+    forSale: number;
+    reproductives: number;
+    matrixes: number;
+    males: number;
+    females: number;
+  }
 }
 
 type AdvertisingQuestionAnswer = IAdvertisingQuestionAnswer & {
@@ -93,9 +100,20 @@ export default class ContentSearchClient {
   }
 
   @RequestErrorHandler()
-  async getBreederPoultries(breederId = '') {
+  async getBreederPoultries(breederId = '', pagination: {
+    forSale?: number;
+    reproductives?: number;
+    matrixes?: number;
+    males?: number;
+    females?: number;
+  }) {
     const { data } = await this._axiosBackofficeBffInstance.get<GetBreederPoultriesSuccess>(
-      `/v1/breeders/${breederId}/poultries`
+      `/v1/breeders/${breederId}/poultries`,
+      {
+        params: {
+          pagination: JSON.stringify(pagination)
+        }
+      }
     );
 
     return data;
