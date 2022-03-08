@@ -1,6 +1,6 @@
 {
 	"name": "@cig-platform/content-search-client",
-	"version": "0.0.15",
+	"version": "0.0.16",
 	"description": "",
 	"main": "build/index.js",
 	"types": "build/index.d.ts",
@@ -20,7 +20,7 @@
 	"dependencies": {
 		"@babel/plugin-proposal-decorators": "^7.16.4",
 		"@cig-platform/decorators": "^0.0.1",
-		"@cig-platform/types": "^0.0.22",
+		"@cig-platform/types": "^0.0.33",
 		"axios": "^0.24.0"
 	},
 	"devDependencies": {
