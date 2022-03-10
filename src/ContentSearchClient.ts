@@ -68,6 +68,30 @@ export interface GetPoultrySuccess extends RequestSuccess {
   breeder: IBreeder;
 }
 
+interface PoultryData {
+  poultry: IPoultry & { mainImage: string; breederId: string };
+  advertising: IAdvertising;
+  breeder: IBreeder;
+  measurementAndWeight: IPoultryRegister & {
+    metadata: {
+      weight?: string;
+      measurement?: string;
+    }
+  };
+}
+
+export interface GetHomeSuccess extends RequestSuccess {
+  femaleChickens: PoultryData[];
+  maleChickens: PoultryData[];
+  matrixes: PoultryData[];
+  reproductives: PoultryData[];
+}
+
+export interface GetSearchSuccess extends RequestSuccess {
+  advertisings: PoultryData[];
+  pages: number;
+}
+
 export default class ContentSearchClient {
   private _axiosBackofficeBffInstance: AxiosInstance;
 
@@ -124,6 +148,58 @@ export default class ContentSearchClient {
     const { data } = await this._axiosBackofficeBffInstance.get<GetPoultrySuccess>(
       `/v1/breeders/${breederId}/poultries/${poultryId}`
     );
+
+    return data;
+  }
+
+  @RequestErrorHandler()
+  async getHome() {
+    const { data } = await this._axiosBackofficeBffInstance.get<GetHomeSuccess>('/v1/home');
+
+    return data;
+  }
+
+  @RequestErrorHandler()
+  async getSearch({
+    gender = [],
+    type = [],
+    tail = [],
+    dewlap = [],
+    crest = [],
+    keyword,
+    genderCategory = [],
+    prices,
+    sort,
+    page = 0,
+    favorites = []
+  }: {
+    gender?: string[];
+    type?: string[];
+    tail?: string[];
+    dewlap?: string[];
+    crest?: string[];
+    keyword?: string;
+    genderCategory?: string[];
+    prices?: { min?: number; max?: number };
+    sort?: string;
+    favorites: string[];
+    page?: number;
+  }) {
+    const { data } = await this._axiosBackofficeBffInstance.get<GetSearchSuccess>('/v1/search', {
+      params: {
+        gender: gender.filter(Boolean).length ? gender.filter(Boolean).join(',') : undefined,
+        type: type.filter(Boolean).length ? type.filter(Boolean).join(',') : undefined,
+        tail: tail.filter(Boolean).length ? tail.filter(Boolean).join(',') : undefined,
+        dewlap: dewlap.filter(Boolean).length ? dewlap.filter(Boolean).join(',') : undefined,
+        crest: crest.filter(Boolean).length ? crest.filter(Boolean).join(',') : undefined,
+        keyword,
+        genderCategory: genderCategory.filter(Boolean).length ? genderCategory.filter(Boolean).join(',') : undefined,
+        prices: prices ? JSON.stringify(prices) : undefined,
+        sort,
+        favoriteIds: favorites.join(','),
+        page
+      }
+    });
 
     return data;
   }
