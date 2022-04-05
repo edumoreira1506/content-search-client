@@ -1,6 +1,6 @@
 {
 	"name": "@cig-platform/content-search-client",
-	"version": "0.0.18",
+	"version": "0.0.19",
 	"description": "",
 	"main": "build/index.js",
 	"types": "build/index.d.ts",
