@@ -56,6 +56,8 @@ type Question = IAdvertisingQuestion & {
 
 type Advertising = IAdvertising & {
   questions: Question[];
+  deals: number;
+  favorites: number;
 }
 
 export interface GetPoultrySuccess extends RequestSuccess {
