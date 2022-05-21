@@ -52,6 +52,7 @@ type AdvertisingQuestionAnswer = IAdvertisingQuestionAnswer & {
 type Question = IAdvertisingQuestion & {
   answers: AdvertisingQuestionAnswer[];
   user: IUser;
+  breeder?: IBreeder;
 }
 
 type Advertising = IAdvertising & {
