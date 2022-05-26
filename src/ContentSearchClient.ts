@@ -174,7 +174,7 @@ export default class ContentSearchClient {
     prices,
     sort,
     page = 0,
-    favorites = []
+    favoriteExternalId
   }: {
     gender?: string[];
     type?: string[];
@@ -185,7 +185,7 @@ export default class ContentSearchClient {
     genderCategory?: string[];
     prices?: { min?: number; max?: number };
     sort?: string;
-    favorites: string[];
+    favoriteExternalId: string;
     page?: number;
   }) {
     const { data } = await this._axiosBackofficeBffInstance.get<GetSearchSuccess>('/v1/search', {
@@ -199,7 +199,7 @@ export default class ContentSearchClient {
         genderCategory: genderCategory.filter(Boolean).length ? genderCategory.filter(Boolean).join(',') : undefined,
         prices: prices ? JSON.stringify(prices) : undefined,
         sort,
-        favoriteIds: favorites.join(','),
+        favoriteExternalId: favoriteExternalId?.length ? favoriteExternalId : undefined,
         page
       }
     });
