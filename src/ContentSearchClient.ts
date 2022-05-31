@@ -157,8 +157,10 @@ export default class ContentSearchClient {
   }
 
   @RequestErrorHandler()
-  async getHome() {
-    const { data } = await this._axiosBackofficeBffInstance.get<GetHomeSuccess>('/v1/home');
+  async getHome(userId?: string) {
+    const { data } = await this._axiosBackofficeBffInstance.get<GetHomeSuccess>('/v1/home', {
+      params: { userId }
+    });
 
     return data;
   }
