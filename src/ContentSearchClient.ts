@@ -84,10 +84,11 @@ interface PoultryData {
 }
 
 export interface GetHomeSuccess extends RequestSuccess {
-  femaleChickens: PoultryData[];
-  maleChickens: PoultryData[];
-  matrixes: PoultryData[];
-  reproductives: PoultryData[];
+  carousels: {
+    title: string;
+    identifier: string;
+    advertisings: PoultryData[];
+  }[]
 }
 
 export interface GetSearchSuccess extends RequestSuccess {
