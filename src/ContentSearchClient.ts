@@ -9,6 +9,7 @@ import {
   IPoultry,
   IPoultryImage,
   IPoultryRegister,
+  IReview,
   IUser,
 } from '@cig-platform/types';
 
@@ -23,6 +24,7 @@ export interface GetBreedersSuccess extends RequestSuccess {
 export interface GetBreederSuccess extends RequestSuccess {
   breeder: IBreeder & { contacts: IBreederContact[] };
   poultries: IPoultry[];
+  reviews: IReview[];
 }
 
 interface PoultryWithImages extends IPoultry {
