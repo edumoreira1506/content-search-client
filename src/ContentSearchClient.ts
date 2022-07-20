@@ -21,10 +21,14 @@ export interface GetBreedersSuccess extends RequestSuccess {
   breeders: IBreeder[];
 }
 
+type Review = IReview & {
+  breederReviewer: IBreeder
+}
+
 export interface GetBreederSuccess extends RequestSuccess {
   breeder: IBreeder & { contacts: IBreederContact[] };
   poultries: IPoultry[];
-  reviews: IReview[];
+  reviews: Review[];
 }
 
 interface PoultryWithImages extends IPoultry {
