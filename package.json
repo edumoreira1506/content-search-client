@@ -20,7 +20,7 @@
 	"dependencies": {
 		"@babel/plugin-proposal-decorators": "^7.17.2",
 		"@cig-platform/decorators": "^0.0.2",
-		"@cig-platform/types": "^0.0.42",
+		"@cig-platform/types": "^0.0.43",
 		"axios": "^0.26.0"
 	},
 	"devDependencies": {
