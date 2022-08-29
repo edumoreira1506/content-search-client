@@ -77,6 +77,11 @@ export interface GetPoultrySuccess extends RequestSuccess {
   breeder: IBreeder;
 }
 
+export interface GetPoultryParentsSuccess extends RequestSuccess {
+  dad?: IPoultry;
+  mom?: IPoultry
+}
+
 interface PoultryData {
   poultry: IPoultry & { mainImage: string; breederId: string };
   advertising: IAdvertising;
@@ -157,6 +162,15 @@ export default class ContentSearchClient {
   async getPoultry(breederId = '', poultryId = '') {
     const { data } = await this._axiosBackofficeBffInstance.get<GetPoultrySuccess>(
       `/v1/breeders/${breederId}/poultries/${poultryId}`
+    );
+
+    return data;
+  }
+
+  @RequestErrorHandler()
+  async getPoultryParents(breederId = '', poultryId = '') {
+    const { data } = await this._axiosBackofficeBffInstance.get<GetPoultryParentsSuccess>(
+      `/v1/breeders/${breederId}/poultries/${poultryId}/parents`
     );
 
     return data;
