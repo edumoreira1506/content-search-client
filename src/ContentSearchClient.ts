@@ -42,6 +42,7 @@ export interface GetBreederPoultriesSuccess extends RequestSuccess {
   matrixes: PoultryWithImages[];
   males: PoultryWithImages[];
   females: PoultryWithImages[];
+  all: PoultryWithImages[];
   pagination: {
     forSale: number;
     reproductives: number;
@@ -145,12 +146,13 @@ export default class ContentSearchClient {
     matrixes?: number;
     males?: number;
     females?: number;
-  }) {
+  }, keyword = '') {
     const { data } = await this._axiosBackofficeBffInstance.get<GetBreederPoultriesSuccess>(
       `/v1/breeders/${breederId}/poultries`,
       {
         params: {
-          pagination: JSON.stringify(pagination)
+          pagination: JSON.stringify(pagination),
+          keyword
         }
       }
     );
